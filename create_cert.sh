@@ -18,8 +18,5 @@ echo -e "\033[32m created CA certificate\033[0m"
 # show crt file
 openssl x509 -in ca.crt -text -noout
 
-# create CA certificate by reference CSR
-openssl x509 -req -in ca.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
-     -out cas.crt -days 365 -sha256
 
 
