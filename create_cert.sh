@@ -31,8 +31,7 @@ openssl genrsa -aes128 -out server/server.key 2048
 openssl req -new -key server/server.key -out server/server.csr
 
 # create CA signed server certificate by reference server CSR
-openssl x509 -req -in CA/ca.csr -CA CA/ca.crt -CAkey CA/ca.key \
-    -CAcreateserial -out server/server.crt -days 365 -sha256
+openssl x509 -req -days 365 -in server/server.csr -signkey server/server.key -out server/server.crt
 
 echo -e "\033[32m created Server certificate\033[0m"
 
@@ -46,8 +45,7 @@ openssl genrsa -aes128 -out client/client.key 2048
 openssl req -new -key client/client.key -out client/client.csr
 
 # create CA signed client certificate by reference server CSR
-openssl x509 -req -in CA/ca.csr -CA CA/ca.crt -CAkey CA/ca.key \
-    -CAcreateserial -out client/client.crt -days 365 -sha256
+openssl x509 -req -days 365 -in client/client.csr -signkey client/client.key -out client/client.crt
 
 echo -e "\033[32m created Client certificate\033[0m"
 
